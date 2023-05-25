@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import CodeReader from './components/CodeReader';
 
 function App() {
   const [scanResults, setScanResults] = useState<string>();
 
-  const onNewScanResult = (decodedText: string, decodedResult: any) => {
+  const onNewScanResult = (decodedText: string) => {
     // handle decoded results here
     console.log(`Scan result = ${decodedText}`, decodedText);
     setScanResults(decodedText);
