@@ -7,7 +7,7 @@ interface Html5QrcodePluginProps {
   aspectRatio?: number;
   disableFlip?: boolean;
   verbose?: boolean;
-  qrCodeSuccessCallback: (decodedText: string) => void;
+  qrCodeSuccessCallback: (decodedText: string, decodedResult: any) => void;
   qrCodeErrorCallback?: (error: any) => void;
 }
 
@@ -31,7 +31,7 @@ const createConfig = (props: Html5QrcodePluginProps) => {
   return config;
 };
 
-const Html5QrcodePlugin = (props: Html5QrcodePluginProps) => {
+const CodeReader = (props: Html5QrcodePluginProps) => {
   useEffect(() => {
     // when component mounts
     const config = createConfig(props);
@@ -61,4 +61,4 @@ const Html5QrcodePlugin = (props: Html5QrcodePluginProps) => {
   return <div id={qrcodeRegionId} />;
 };
 
-export default Html5QrcodePlugin;
+export default CodeReader;

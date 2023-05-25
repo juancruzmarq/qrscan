@@ -1,21 +1,33 @@
+import { useEffect, useState } from 'react';
 import './App.css';
-import Html5QrcodePlugin from './components/ReadQR';
+import CodeReader from './components/CodeReader';
 
 function App() {
-  const onNewScanResult = (decodedText: string) => {
+  const [scanResults, setScanResults] = useState<string>();
+
+  const onNewScanResult = (decodedText: string, decodedResult: any) => {
     // handle decoded results here
     console.log(`Scan result = ${decodedText}`, decodedText);
-    return decodedText;
+    setScanResults(decodedText);
   };
+
   return (
     <>
       <div>
-        <Html5QrcodePlugin
-          fps={10}
+        <CodeReader
+          fps={30}
           qrbox={250}
-          disableFlip={false}
+          disableFlip={true}
           qrCodeSuccessCallback={onNewScanResult}
         />
+      </div>
+      <div className='results-container'>
+        {scanResults && (
+          <div className='results'>
+            <div className='results-title'>Scan Results</div>
+            <div className='results-body'>{scanResults}</div>
+          </div>
+        )}
       </div>
     </>
   );
